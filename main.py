@@ -46,10 +46,8 @@ while isGameOn:
     scoreboard.gameover()   
   
   #detect snake's collision with itself
-  for snakeSegment in snake.turtles:
-    if snakeSegment == snake.head:
-      pass
-    elif snake.head.distance(snakeSegment)<10:
+  for snakeSegment in snake.turtles[1:]:
+    if snake.head.distance(snakeSegment)<10:
       isGameOn=False
       scoreboard.gameover()
 screen.exitonclick()
