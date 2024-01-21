@@ -9,7 +9,7 @@ LEFT=180
 class Snake:
   
   def __init__(self) -> None:
-    self.turtles = STARTING_POSITIONS
+    self.turtles = []
     self.makeSnake()
     self.head = self.turtles[0]
     self.justTurned=False
@@ -17,13 +17,21 @@ class Snake:
   
   def makeSnake(self):
     # creating 3 turtles in the begining for making a snake
-    for turtle in self.turtles:
-      magTheTurtle = Turtle(shape="square")
-      magTheTurtle.color("white")
-      magTheTurtle.penup()
-      magTheTurtle.goto(turtle)
-      self.turtles[self.turtles.index(turtle)]=magTheTurtle
+    for position in STARTING_POSITIONS:
+      self.addSegment(position)
+    # self.extend()
       
+  def addSegment(self,position):
+    magTheTurtle = Turtle(shape="square")
+    magTheTurtle.color("white")
+    magTheTurtle.penup()
+    magTheTurtle.goto(position)
+    self.turtles.append(magTheTurtle)
+  
+  def extend(self):
+    # print("extending snake")
+    self.addSegment(self.turtles[-1].position())
+  
   def move(self):
     for turtle_num in range(len(self.turtles)-1,0,-1):
       #start is inclusive, 0 is exclusive
