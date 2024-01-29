@@ -10,17 +10,22 @@ class Snake:
   
   def __init__(self) -> None:
     self.turtles = []
-    self.makeSnake()
-    self.head = self.turtles[0]
-    self.justTurned=False
+    self.resetSnake()
     # self.screen =screen
-  
   def makeSnake(self):
     # creating 3 turtles in the begining for making a snake
     for position in STARTING_POSITIONS:
       self.addSegment(position)
     # self.extend()
-      
+  
+  def resetSnake(self):
+    for turtle in self.turtles:
+      turtle.hideturtle()
+    self.turtles.clear()
+    self.makeSnake()
+    self.head = self.turtles[0]
+    self.justTurned=False
+    
   def addSegment(self,position):
     magTheTurtle = Turtle(shape="square")
     magTheTurtle.color("white")

@@ -4,19 +4,27 @@ class Scoreboard(Turtle):
   def __init__(self)->None:
     super().__init__()
     self.score=0
+    self.highScore =0
     self.penup()
-    self.hideturtle()
     self.color("white")
-    self.goto((0,320))
+    self.hideturtle()
+    self.updateScoreboard()
     # self.pensize(40)
-    self.write(f"Score: {self.score}", True,align="center",font=("Arial", 18, "normal"),)
     
-  def snakeAteFood(self):
+    
+  def updateScoreboard(self):
     self.clear()
-    self.score+=1
     self.goto((0,320))
-    self.write(f"Score: {self.score}", True,align="center",font=("Arial", 18, "normal"),)    
+    self.write(f"Score: {self.score}, High Score: {self.highScore}", True,align="center",font=("Arial", 18, "normal"),)
+  def snakeAteFood(self):
+    self.score+=1
+    self.updateScoreboard()   
     
-  def gameover(self):
-    self.goto((0,0))
-    self.write("Game Over",True,align="center",font=("Arial", 18, "normal"))
+  def reset(self):
+    if self.score > self.highScore:
+      self.highScore = self.score
+    self.score = 0
+    self.updateScoreboard()
+  # def gameover(self):
+  #   self.goto((0,0))
+  #   self.write("Game Over",True,align="center",font=("Arial", 18, "normal"))

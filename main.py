@@ -30,7 +30,7 @@ screen.update()
 
 while isGameOn:
   screen.update()
-  time.sleep(.1)
+  time.sleep(0.1)
   snake.move()
   
   # detect snake's distance with food
@@ -42,12 +42,16 @@ while isGameOn:
   # detect snake's collision with walls
   if(snake.head.xcor()>330 or snake.head.xcor()<-330 or snake.head.ycor()>330 or snake.head.ycor()<-330):
     screen.update()
-    isGameOn=False
-    scoreboard.gameover()   
+    snake.resetSnake()
+    # isGameOn=False
+    # scoreboard.gameover()   
+    scoreboard.reset()
   
   #detect snake's collision with itself
   for snakeSegment in snake.turtles[1:]:
     if snake.head.distance(snakeSegment)<10:
-      isGameOn=False
-      scoreboard.gameover()
+      # isGameOn=False
+      # scoreboard.gameover()
+      scoreboard.reset()
+      snake.resetSnake()
 screen.exitonclick()
